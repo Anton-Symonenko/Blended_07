@@ -1,10 +1,10 @@
-// const TASKS_KEY = 'tasks';
+const TASKS_KEy = 'tasks';
 
-// export function saveTasks(tasks) {
-//   localStorage.setItem(TASKS_KEY, JSON.stringify(tasks));
-// }
+export function saveTasks(tasks) {
+  localStorage.setItem(TASKS_KEy, JSON.stringify(tasks));
+}
 
-// export function loadTasks() {
-//   const tasks = localStorage.getItem(TASKS_KEY);
-//   return tasks ? JSON.parse(tasks) : [];
-// }
+export function loadTasks() {
+  const data = localStorage.getItem(TASKS_KEy);
+  return data ? JSON.parse(data) : [];
+}

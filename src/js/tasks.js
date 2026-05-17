@@ -1,25 +1,26 @@
-// import { loadTasks, saveTasks } from './local-storage-api';
-// import refs from './refs';
-// import { renderTasks } from './render-tasks';
-// import { nanoid } from 'nanoid';
+import { saveTasks, loadTasks } from './local-storage-api';
+import { renderTasks } from './render-tasks';
+import { nanoid } from 'nanoid';
 
-// let tasks = loadTasks();
+let tasks = loadTasks();
 
-// export function getTasks() {
-//   return tasks;
-// }
+export function initTasks() {
+  renderTasks(tasks);
+}
 
-// export function addTask(tasks, onAdd) {
-//   refs.addBtnElem.addEventListener('submit', event => {
-//     event.preventDefault();
-//     const newTask = {
-//       id: nanoid(),
-//       name: refs.inputNameElem.value.trim(),
-//       description: refs.inputTextElem.value.trim(),
-//     };
-//     tasks.push(newTask);
-//     renderTasks(tasks, onAdd);
-//     refs.formElem.reset();
-//   });
-//   console.log(addTask);
-// }
+export function addTask(title, text) {
+  const newTask = {
+    id: nanoid(),
+    title,
+    text,
+  };
+  tasks.push(newTask);
+  saveTasks(tasks);
+  renderTasks(tasks);
+}
+
+export function deleteTask(id) {
+  tasks = tasks.filter(task => task.id !== id);
+  saveTasks(tasks);
+  renderTasks(tasks);
+}
